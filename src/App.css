@@ -1,9 +1,33 @@
-.App{
-  display: flex;
-  justify-content: center;
-  text-align: center;
+body{
   background-color: rgb(112, 112, 112);
 }
+
+.App{
+
+  text-align: center;
+}
 .game-button{
-  padding: 0.2em;
+  padding: 0.9em;
+  background-color: brown;
+  border-radius: 0.8em;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+  color: cornsilk;
+}
+.game-button:hover{
+  transform: scale(1.1);
+  transition: 200ms;
+}
+span{
+  border: 0.1em solid white;
+  font-size: 4em;
+}
+
+span:hover{
+  transform: scale(1.1);
+  transition: 200ms;
 }
