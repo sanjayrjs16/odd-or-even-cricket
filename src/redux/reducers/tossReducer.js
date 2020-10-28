@@ -15,6 +15,9 @@ const tossReducer = (state = initialState, action) => {
         case SET_TOSS_SELECTED: {
             return {...state, tossSelected: !state.tossSelected}
         }
+        case SET_TOSS_WINNER: {
+            return {...state, tossWinner: action.payload}
+        }
         case SET_TOSS_COMPLETED: {
             return {...state, tossCompleted: !state.tossCompleted}
         }

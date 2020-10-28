@@ -19,6 +19,12 @@ export const setTossCaller = (caller) => {
       type: SET_TOSS_SELECTED
     }
   }
+  export const setTossWinner = (winner) => {
+    return {
+      type: SET_TOSS_WINNER,
+      payload: winner
+    }
+  }
   export const setTossCompleted = () => {
     return {
       type: SET_TOSS_COMPLETED

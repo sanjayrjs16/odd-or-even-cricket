@@ -8,7 +8,7 @@ import TossComponent from './TossComponent';
 
 
 import { connect } from 'react-redux';
-import { setTossCaller, setTossCall, setTossSelected, setTossCompleted } from '../redux/actions/tossActionCreator';
+import { setTossCaller, setTossCall, setTossSelected, setTossCompleted, setTossWinner } from '../redux/actions/tossActionCreator';
 import { setPlayerMove, setComputerMove } from '../redux/actions/gameActionCreator';
 
 
@@ -18,7 +18,7 @@ function GameAreaContainer(props) {
     if(props.tossCompleted) {
         return (
             <>
-            <InfoComponent /> 
+            <InfoComponent info={`${props.tossWinner} won the toss !!`}/> 
             
             </>
         )
@@ -27,7 +27,7 @@ function GameAreaContainer(props) {
         if(props.tossSelected){
            return ( <>
             <InfoComponent info={`TOSS TIME !! ,  ${props.tossCaller} chose ${props.tossCall}`} />
-            <TossComponent tossCaller={props.tossCaller} tossCall={props.tossCall}  playerMove={props.playerMove} computerMove={props.computerMove} setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove}/>
+            <TossComponent tossCaller={props.tossCaller} tossCall={props.tossCall} setTossWinner={props.setTossWinner} setTossCompleted={props.setTossCompleted} playerMove={props.playerMove} computerMove={props.computerMove} setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove}/>
             
             </> )
         }
@@ -47,8 +47,10 @@ const mapStateToProps = (state) => {
              tossSelected: state.toss.tossSelected,
              tossCaller: state.toss.tossCaller,
              tossCall: state.toss.tossCall,
+             tossWinner: state.toss.tossWinner,
              playerMove: state.game.playerMove,
-            computerMove: state.game.computerMove    }
+            computerMove: state.game.computerMove
+                }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -57,6 +59,7 @@ const mapDispatchToProps = (dispatch) => {
         setTossCall: (choice) => dispatch(setTossCall(choice)),
         setTossSelected: () => dispatch(setTossSelected()),
         setTossCompleted: () => dispatch(setTossCompleted()),
+        setTossWinner: (winner) => dispatch(setTossWinner(winner)),
         setPlayerMove: (number, hand) => dispatch(setPlayerMove(number, hand)),
         setComputerMove: (number, hand) => dispatch(setComputerMove(number, hand))
     }

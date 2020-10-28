@@ -1,8 +1,35 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import GameAreaComponent from './GameAreaComponent'
 import PlayerMovesComponent from './PlayerMovesComponent'
 
 export default function TossComponent(props) {
+   
+       useEffect( () => {
+           
+        if(props.playerMove != undefined && props.computerMove != undefined){
+            console.log("inside useeffect", props.playerMove.number)
+            if((props.playerMove.number + props.computerMove.number)%2 == 0 && props.tossCall=="EVEN"){
+                props.setTossWinner(props.tossCaller);
+                props.setTossCompleted();
+            }
+            else if((props.playerMove.number + props.computerMove.number)%2 != 0 && props.tossCall=="ODD"){
+                props.setTossWinner(props.tossCaller);
+                props.setTossCompleted();
+            }
+            else{
+                    if(props.tossCaller === "You"){
+                        props.setTossWinner("Computer");
+                        props.setTossCompleted();
+                    }
+                    else{
+                        props.setTossWinner("You");
+                        props.setTossCompleted();
+                    }
+            }
+        
+    }
+       }, [props.playerMove, props.computerMove]);
+    
     return (
         <div>
             <GameAreaComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
