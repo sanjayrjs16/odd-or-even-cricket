@@ -1,0 +1,2 @@
+export const SET_USER_MOVE = 'SET_USER_MOVE';
+export const SET_COMPUTER_MOVE = 'SET_COMPUTER_MOVE';  
