@@ -3,10 +3,15 @@ import StartGameComponent from './components/StartGameComponent';
 import RulesComponent from './components/RulesComponent';
 import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+import store from './redux/store/store';
+
+import {Provider} from 'react-redux';
+
 import './App.css';
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
      <Router>
       <h1>Hand Cricket </h1>
@@ -26,6 +31,7 @@ function App() {
      </Router>
      
     </div>
+    </Provider>
   );
 }
 
