@@ -38,3 +38,35 @@ span:hover{
   margin: auto;
 
 }
+
+.player-icon{
+  border: 0.08em  cornsilk solid;
+  border-radius: 10%;
+  padding: 0.8em;
+  margin: 2em;
+  background-color: rgb(177, 149, 154);
+}
+.player-fist{
+  border: none;
+  padding: 0.8em;
+  margin: 2em;
+
+}
+
+.info-container{
+  background-color: rgb(36, 35, 33);
+  color: rgb(252, 252, 252);
+  width: 25%;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  margin: auto;
+  margin-bottom: .82em;
+}
+
+.game-area{
+  border: 0.25em rgb(199, 180, 218) solid;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

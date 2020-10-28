@@ -1,25 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import '../App.css';
 import GameAreaContainer from './GameAreaContainer';
 
-export default function StartGameComponent() {
+function StartGameComponent(props) {
     return (
         <div>
             <GameAreaContainer />
-            <button className="game-button"><Link to="/">Back</Link></button>
-            <h1>Toss Time !!</h1>
-            <h2> Odd or Even ?</h2>
-            <button className="game-button">Odd</button>
-            <button className="game-button">Even</button>
-            <div>
-            <div>
-            <span role="img" aria-label="right-facing-fist">🤜</span>
-            <span role="img" aria-label="left-facing-fist">🤛</span>
-            </div>
+            {! (props.tossSelected) && <button className="game-button"><Link to="/">Back</Link></button>}
             
-            </div>
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        tossSelected: state.toss.tossSelected
+    }
+}
+
+export default connect(mapStateToProps)(StartGameComponent);
