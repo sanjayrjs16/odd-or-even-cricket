@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 
  function PlayerMovesComponent(props) {
     const setMoves = (number, move) => {

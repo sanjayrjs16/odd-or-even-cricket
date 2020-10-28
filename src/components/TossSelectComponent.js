@@ -12,7 +12,7 @@ export default function TossSelectComponent(props) {
             </div>
            <hr />
            <div className="game-container">
-             <button className="game-button" onClick={() => {props.setTossCaller("Computer");Math.floor(Math.random()*2)==0?props.setTossCall("ODD"):props.setTossCall("EVEN");props.setTossSelected();}}>Let Computer make the call</button>
+             <button className="game-button" onClick={() => {props.setTossCaller("Computer");Math.floor(Math.random()*2)===0?props.setTossCall("ODD"):props.setTossCall("EVEN");props.setTossSelected();}}>Let Computer make the call</button>
           
            </div>
            

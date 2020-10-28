@@ -6,13 +6,13 @@ export default function TossComponent(props) {
    
        useEffect( () => {
            
-        if(props.playerMove != undefined && props.computerMove != undefined){
+        if(props.playerMove !== undefined && props.computerMove !== undefined){
             console.log("inside useeffect", props.playerMove.number)
-            if((props.playerMove.number + props.computerMove.number)%2 == 0 && props.tossCall=="EVEN"){
+            if((props.playerMove.number + props.computerMove.number)%2 === 0 && props.tossCall==="EVEN"){
                 props.setTossWinner(props.tossCaller);
                 props.setTossCompleted();
             }
-            else if((props.playerMove.number + props.computerMove.number)%2 != 0 && props.tossCall=="ODD"){
+            else if((props.playerMove.number + props.computerMove.number)%2 !== 0 && props.tossCall==="ODD"){
                 props.setTossWinner(props.tossCaller);
                 props.setTossCompleted();
             }
@@ -28,7 +28,7 @@ export default function TossComponent(props) {
             }
         
     }
-       }, [props.playerMove, props.computerMove]);
+       }, [props]);
     
     return (
         <div>

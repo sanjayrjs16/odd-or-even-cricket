@@ -19,14 +19,14 @@ function GameAreaContainer(props) {
         return (
             <>
             <InfoComponent info={`${props.tossWinner} won the toss !!`}/> 
-            
+            <GameAreaComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
             </>
         )
     }
     else{
         if(props.tossSelected){
            return ( <>
-            <InfoComponent info={`TOSS TIME !! ,  ${props.tossCaller} chose ${props.tossCall}`} />
+            <InfoComponent info={`TOSS TIME ! ! , ${props.tossCaller} chose ${props.tossCall}`} />
             <TossComponent tossCaller={props.tossCaller} tossCall={props.tossCall} setTossWinner={props.setTossWinner} setTossCompleted={props.setTossCompleted} playerMove={props.playerMove} computerMove={props.computerMove} setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove}/>
             
             </> )
