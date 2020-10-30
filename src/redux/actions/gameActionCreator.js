@@ -1,4 +1,4 @@
-import {SET_USER_MOVE, SET_COMPUTER_MOVE} from './gameActionType';
+import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST} from './gameActionType';
 
 export const setPlayerMove = (number, hand) => {
     return {
@@ -13,5 +13,12 @@ export const setComputerMove = (number, hand) => {
         type: SET_COMPUTER_MOVE,
         payload: { number: number,
             hand: hand }
+    }
+}
+
+export const setBatFirst = (whoeverBatsFirst) => {
+    return {
+        type: SET_BAT_FIRST,
+        payload: whoeverBatsFirst
     }
 }

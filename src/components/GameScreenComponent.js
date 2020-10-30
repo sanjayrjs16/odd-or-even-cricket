@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function GameAreaComponent(props) {
+export default function GameScreenComponent(props) {
    
     return (
         <div className="game-area">

@@ -1,5 +1,5 @@
 import React , {useEffect} from 'react'
-import GameAreaComponent from './GameAreaComponent'
+import GameScreenComponent from './GameScreenComponent'
 import PlayerMovesComponent from './PlayerMovesComponent'
 
 export default function TossComponent(props) {
@@ -32,9 +32,10 @@ export default function TossComponent(props) {
     
     return (
         <div>
-            <GameAreaComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
+            <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
             <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} />
             {console.log("You chose", props.playerMove, "and computer chose", props.computerMove)}
+           
         </div>
     )
 }

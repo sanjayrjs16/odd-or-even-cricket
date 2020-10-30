@@ -1,2 +1,7 @@
 export const SET_USER_MOVE = 'SET_USER_MOVE';
 export const SET_COMPUTER_MOVE = 'SET_COMPUTER_MOVE';  
+export const SET_BAT_FIRST = 'SET_BAT_FIRST'; 
+export const UPDATE_TARGET = 'UPDATE_TARGET';
+export const UPDATE_WICKETS = 'UPDATE_WICKETS';
+export const RESET_WICKETS = 'RESET_WICKETS';
+export const RESET_HANDS = 'RESET_HANDS'; 
