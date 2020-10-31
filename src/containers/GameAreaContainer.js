@@ -43,7 +43,7 @@ function GameAreaContainer(props) {
                     <GameScreenComponent playerMove={props.playerTossMove} computerMove={props.computerTossMove} startGame={false}/>
                     {setTimeout(() => {
                         pickComputerChoice()
-                    }, 2000)}
+                    }, 1678)}
                     </>
                 )
             }    
@@ -51,9 +51,9 @@ function GameAreaContainer(props) {
         else{
             return (
                 <>
-                 <InfoComponent info={`${props.tossWinner} won the toss and chose to ${props.batFirst===props.tossWinner?"Bat":"Bowl"} first !`} />
-                <MatchContainer />
-                {console.log(props.tossWinner, props.batFirst)}
+                 
+                <MatchContainer tossWinner={props.tossWinner}/>
+               
                 </>
 
             )

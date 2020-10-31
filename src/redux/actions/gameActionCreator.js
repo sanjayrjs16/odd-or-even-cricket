@@ -1,4 +1,4 @@
-import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST, UPDATE_TARGET, DECREMENT_BALLS, UPDATE_WICKETS, UPDATE_RUNS, SET_FIRST_INNINGS_DONE, RESET_BALLS} from './gameActionType';
+import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST, UPDATE_TARGET, DECREMENT_BALLS, UPDATE_WICKETS, UPDATE_RUNS, SET_FIRST_INNINGS_DONE, RESET_BALLS, DECLARE_WINNER, END_GAME} from './gameActionType';
 
 export const setPlayerMove = (number, hand, startGame) => {
     return {
@@ -65,5 +65,18 @@ export const resetBalls = () => {
 export const setfirstInningsDone = () => {
     return {
         type: SET_FIRST_INNINGS_DONE
+    }
+}
+
+export const declareWinner = (winner) => {
+    return {
+        type: DECLARE_WINNER,
+        payload: winner
+    }
+}
+
+export const setEndGame = () => {
+    return {
+        type: END_GAME
     }
 }

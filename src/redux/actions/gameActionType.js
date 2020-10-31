@@ -8,4 +8,6 @@ export const DECREMENT_BALLS = 'DECREMENT_BALLS';
 export const SET_FIRST_INNINGS_DONE = 'SET_FIRST_INNINGS_DONE';
 export const UPDATE_RUNS = 'UPDATE_RUNS';
 export const RESET_BALLS = 'RESET_BALLS'; 
+export const DECLARE_WINNER ='DECLARE_WINNER';
+export const END_GAME = 'END_GAME';
 // export const RESET_HANDS = 'RESET_HANDS'; 

@@ -1,4 +1,4 @@
-import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST, UPDATE_TARGET, DECREMENT_BALLS, UPDATE_WICKETS, UPDATE_RUNS, RESET_BALLS, SET_FIRST_INNINGS_DONE} from '../actions/gameActionType';
+import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST, UPDATE_TARGET, DECREMENT_BALLS, UPDATE_WICKETS, UPDATE_RUNS, RESET_BALLS, SET_FIRST_INNINGS_DONE, DECLARE_WINNER, END_GAME} from '../actions/gameActionType';
 const initialState = {
     firstInningsDone: false,
     balls: 6,
@@ -8,6 +8,7 @@ const initialState = {
              wickets: 3  },
     computerStats: {runScored: 0,
         wickets: 3  },
+        gameEnd: false
             
 }
 const gameReducer = (state = initialState, action) => {
@@ -75,6 +76,12 @@ const gameReducer = (state = initialState, action) => {
         }
         case SET_FIRST_INNINGS_DONE: {
             return { ...state, firstInningsDone: true}
+        }
+        case DECLARE_WINNER: {
+            return { ...state, winner: action.payload}
+        }
+        case END_GAME: {
+            return { ...state, gameEnd: true}
         }
         default:
             return state
