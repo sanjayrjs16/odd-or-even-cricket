@@ -1,18 +1,20 @@
 import {SET_USER_MOVE, SET_COMPUTER_MOVE, SET_BAT_FIRST, UPDATE_TARGET, DECREMENT_BALLS, UPDATE_WICKETS, UPDATE_RUNS, SET_FIRST_INNINGS_DONE, RESET_BALLS} from './gameActionType';
 
-export const setPlayerMove = (number, hand) => {
+export const setPlayerMove = (number, hand, startGame) => {
     return {
         type: SET_USER_MOVE,
         payload: { number: number,
-                   hand: hand }
+                   hand: hand,
+                   startGame: startGame }
     }
 }
 
-export const setComputerMove = (number, hand) => {
+export const setComputerMove = (number, hand, startGame) => {
     return {
         type: SET_COMPUTER_MOVE,
         payload: { number: number,
-            hand: hand }
+            hand: hand,
+            startGame: startGame }
     }
 }
 

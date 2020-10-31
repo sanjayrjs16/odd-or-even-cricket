@@ -28,8 +28,8 @@ function GameAreaContainer(props) {
             if(props.tossWinner==="You"){
                 return (
                     <>
-                    <InfoComponent info={`It's ${(props.playerMove.number + props.computerMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
-                    <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
+                    <InfoComponent info={`It's ${(props.playerTossMove.number + props.computerTossMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
+                    <GameScreenComponent playerMove={props.playerTossMove} computerMove={props.computerTossMove} startGame={true}/>
                     <button className="game-button" onClick={() => props.setBatFirst("You")}>Bat</button>
                     <button className="game-button"  onClick={() => props.setBatFirst("Computer")}>Bowl</button>
                     
@@ -39,8 +39,8 @@ function GameAreaContainer(props) {
             else{
                 return (
                     <>
-                    <InfoComponent info={`It's ${(props.playerMove.number + props.computerMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
-                    <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
+                    <InfoComponent info={`It's ${(props.playerTossMove.number + props.computerTossMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
+                    <GameScreenComponent playerMove={props.playerTossMove} computerMove={props.computerTossMove} startGame={false}/>
                     {setTimeout(() => {
                         pickComputerChoice()
                     }, 2000)}
@@ -64,7 +64,7 @@ function GameAreaContainer(props) {
         if(props.tossSelected){
            return ( <>
             <InfoComponent info={`TOSS TIME ! ! , ${props.tossCaller} chose ${props.tossCall}`} />
-            <TossComponent tossCaller={props.tossCaller} tossCall={props.tossCall} setTossWinner={props.setTossWinner} setTossCompleted={props.setTossCompleted} playerMove={props.playerMove} computerMove={props.computerMove} setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove}/>
+            <TossComponent tossCaller={props.tossCaller} tossCall={props.tossCall} setTossWinner={props.setTossWinner} setTossCompleted={props.setTossCompleted} playerMove={props.playerTossMove} computerMove={props.computerTossMove} setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove}/>
             
             </> )
         }
@@ -86,8 +86,10 @@ const mapStateToProps = (state) => {
              tossCall: state.toss.tossCall,
              tossWinner: state.toss.tossWinner,
              batFirst: state.game.batFirst,
-             playerMove: state.game.playerMove,
-            computerMove: state.game.computerMove
+             playerTossMove: state.game.playerTossMove,
+            computerTossMove: state.game.computerTossMove,
+            playerGameMove: state.game.playerGameMove,
+            computerGameMove: state.game.computerGameMove
                 }
 }
 
@@ -98,8 +100,8 @@ const mapDispatchToProps = (dispatch) => {
         setTossSelected: () => dispatch(setTossSelected()),
         setTossCompleted: () => dispatch(setTossCompleted()),
         setTossWinner: (winner) => dispatch(setTossWinner(winner)),
-        setPlayerMove: (number, hand) => dispatch(setPlayerMove(number, hand)),
-        setComputerMove: (number, hand) => dispatch(setComputerMove(number, hand)),
+        setPlayerMove: (number, hand, startGame) => dispatch(setPlayerMove(number, hand, startGame)),
+        setComputerMove: (number, hand, startGame) => dispatch(setComputerMove(number, hand, startGame)),
         setBatFirst: (whoeverBatsFirst) => dispatch(setBatFirst(whoeverBatsFirst))
     }
 }

@@ -13,18 +13,34 @@ const initialState = {
 const gameReducer = (state = initialState, action) => {
     switch(action.type){
         case SET_USER_MOVE:{
-            return {
-                ...state, playerMove: { number: action.payload.number, hand: action.payload.hand}
+            if(action.payload.startGame){
+                console.log("inside Game Reducer, game moves set")
+                return {
+                    ...state, playerGameMove: { number: action.payload.number, hand: action.payload.hand}
+                }
             }
+            else{
+                return {
+                    ...state, playerTossMove: { number: action.payload.number, hand: action.payload.hand}
+                }
+            }
+            
         }
         case SET_COMPUTER_MOVE:{
-            return {
-                ...state, computerMove: {number: action.payload.number, hand: action.payload.hand}
+            if(action.payload.startGame){
+                return {
+                    ...state, computerGameMove: { number: action.payload.number, hand: action.payload.hand}
+                }
+            }
+            else{
+                return {
+                    ...state, computerTossMove: { number: action.payload.number, hand: action.payload.hand}
+                }
             }
         }
         case SET_BAT_FIRST:{
             return{
-                ...state, batFirst: action.payload
+                ...state, batFirst: action.payload, playerMove:{hand: "🤜", number: "0"}, computerMove: { hand: "🤛" , number: 0}
             }
         }
         case DECREMENT_BALLS: {
@@ -55,7 +71,7 @@ const gameReducer = (state = initialState, action) => {
             return { ...state, target: state.target + action.payload}
         }
         case RESET_BALLS: {
-            return { ...state, balls: 18}
+            return { ...state, balls: 6}
         }
         case SET_FIRST_INNINGS_DONE: {
             return { ...state, firstInningsDone: true}
