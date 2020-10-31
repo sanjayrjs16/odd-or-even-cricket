@@ -10,7 +10,7 @@ function MatchContainer(props) {
     const checkWinner = useCallback(() => {
         if(props.batFirst==="You"){
             if(props.balls === 0 || props.computerStats.wickets ===0){
-                if(props.target<props.computerStats.runScored){
+                if((props.target)<props.computerStats.runScored){
                     console.log("Computer WON!!")
                 }
                 else if(props.target===props.computerStats.runScored){
@@ -26,7 +26,7 @@ function MatchContainer(props) {
                 if(props.target<props.playerStats.runScored){
                     console.log("You WON!!")
                 }
-                else if(props.target===props.computerStats.runScored){
+                else if(props.target===props.playerStats.runScored){
                     console.log("It's a draw!!")
                 }
                 else{
@@ -98,7 +98,7 @@ function MatchContainer(props) {
                 console.log("First innings not complete (Inside useEffect)")
                 if(props.batFirst==="You"){
                         if(checkBallOutcome("You")==="Runs"){
-                            props.updateTarget(props.playerGameMove.number + 1)
+                            props.updateTarget(props.playerGameMove.number)
                             console.log("Your score ( ", props.playerStats.runScored," - ",3 - props.playerStats.wickets," ) - Target is :",props.target)
                         }
                 }
