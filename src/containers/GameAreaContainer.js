@@ -29,7 +29,7 @@ function GameAreaContainer(props) {
                 return (
                     <>
                     <InfoComponent info={`It's ${(props.playerTossMove.number + props.computerTossMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
-                    <GameScreenComponent playerMove={props.playerTossMove} computerMove={props.computerTossMove} startGame={true}/>
+                    <GameScreenComponent playerMove={props.playerTossMove} computerMove={props.computerTossMove} startGame={false}/>
                     <button className="game-button" onClick={() => props.setBatFirst("You")}>Bat</button>
                     <button className="game-button"  onClick={() => props.setBatFirst("Computer")}>Bowl</button>
                     

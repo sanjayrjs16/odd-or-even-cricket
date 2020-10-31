@@ -164,7 +164,7 @@ function MatchContainer(props) {
             return (
                 <>
                 <InfoComponent info={`Target  ${props.target}`} />
-                <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} who={props.batFirst==="You"?"Computer":"You"} runs={props.batFirst==="You"?props.computerStats.runScored:props.playerStats.runScored} wickets={props.batFirst==="You"?props.computerStats.wickets:props.playerStats.wickets}/>
+                <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone} who={props.batFirst==="You"?"Computer":"You"} runs={props.batFirst==="You"?props.computerStats.runScored:props.playerStats.runScored} wickets={props.batFirst==="You"?props.computerStats.wickets:props.playerStats.wickets} target={props.target} balls={props.balls}/>
                 <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} countBalls={true} decrementBalls={props.decrementBalls} startGame={true} />
     
                 </>
@@ -172,7 +172,7 @@ function MatchContainer(props) {
         }
         return (
             <>   <InfoComponent info={`${props.tossWinner} won the toss and chose to ${props.batFirst===props.tossWinner?"Bat":"Bowl"} first !`} />
-                <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}/>
+                <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
                 <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} countBalls={true} decrementBalls={props.decrementBalls} startGame={true} />
                 {console.log(props.balls)}
             </>
