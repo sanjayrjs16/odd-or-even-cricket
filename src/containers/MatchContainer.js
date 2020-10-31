@@ -183,6 +183,8 @@ function MatchContainer(props) {
             return (
                 <>
                     <InfoComponent info={"It's a draw !!"} />
+                    <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
+
                 </>
             )
         }
@@ -190,6 +192,8 @@ function MatchContainer(props) {
             return (
                 <>
                     <InfoComponent info={`${props.winner} won the match !!`} />
+                    <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
+
             </>
             )
         }
