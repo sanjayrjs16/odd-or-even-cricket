@@ -33,7 +33,7 @@ export default function TossComponent(props) {
     return (
         <div>
             <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
-            <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} />
+            <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} countBalls={false} />
             {console.log("You chose", props.playerMove, "and computer chose", props.computerMove)}
            
         </div>

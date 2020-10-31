@@ -1,20 +1,28 @@
-import React from 'react';
-import GameScreenComponent from './GameScreenComponent';
-import InfoComponent from './InfoComponent';
-import PlayerMovesComponent from './PlayerMovesComponent';
-import TossSelectComponent from './TossSelectComponent';
+import React, {useCallback} from 'react';
+import GameScreenComponent from '../components/GameScreenComponent';
+import InfoComponent from '../components/InfoComponent';
+import PlayerMovesComponent from '../components/PlayerMovesComponent';
+import TossSelectComponent from '../components/TossSelectComponent';
 
-import TossComponent from './TossComponent';
+import TossComponent from '../components/TossComponent';
 
 
 import { connect } from 'react-redux';
 import { setTossCaller, setTossCall, setTossSelected, setTossCompleted, setTossWinner } from '../redux/actions/tossActionCreator';
 import { setBatFirst, setPlayerMove, setComputerMove } from '../redux/actions/gameActionCreator';
 
+import MatchContainer from './MatchContainer';
+
 
 
 
 function GameAreaContainer(props) {
+
+    const pickComputerChoice = useCallback(() => {
+       Math.floor(Math.random() * 2) === 0?props.setBatFirst("Computer"):props.setBatFirst("You")
+    })
+
+
     if(props.tossCompleted) {
         if(props.batFirst===undefined){
             if(props.tossWinner==="You"){
@@ -24,7 +32,7 @@ function GameAreaContainer(props) {
                     <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
                     <button className="game-button" onClick={() => props.setBatFirst("You")}>Bat</button>
                     <button className="game-button"  onClick={() => props.setBatFirst("Computer")}>Bowl</button>
-                    {console.log(props.batFirst, "Will BAT first")}
+                    
                     </>
                 )
             }
@@ -33,10 +41,22 @@ function GameAreaContainer(props) {
                     <>
                     <InfoComponent info={`It's ${(props.playerMove.number + props.computerMove.number)%2===0?"EVEN":"ODD"} ! ,  ${props.tossWinner} won the toss !!`}/> 
                     <GameScreenComponent playerMove={props.playerMove} computerMove={props.computerMove}/>
-                    {Math.floor(Math.random() * 2) === 0?props.setBatFirst("Computer"):props.setBatFirst("You")}
+                    {setTimeout(() => {
+                        pickComputerChoice()
+                    }, 2000)}
                     </>
                 )
             }    
+        }
+        else{
+            return (
+                <>
+                 <InfoComponent info={`${props.tossWinner} won the toss and chose to ${props.batFirst===props.tossWinner?"Bat":"Bowl"} first !`} />
+                <MatchContainer />
+                {console.log(props.tossWinner, props.batFirst)}
+                </>
+
+            )
         }
         
     }

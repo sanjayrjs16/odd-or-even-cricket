@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 
  function PlayerMovesComponent(props) {
-    const setMoves = (number, move) => {
+    const setMoves = useCallback( (number, move) => {
+        if(props.countBalls){
+            props.decrementBalls();
+        }
         props.setPlayerMove(number, move);
         const computermove = Math.floor(Math.random() * 7);
         switch(computermove){
@@ -38,7 +41,7 @@ import React from 'react';
                  props.setComputerMove(0, <span role="img" aria-label="fist">✊</span>);
                 break;
         }
-    }
+    })
     return (
         <div>
             <h2> Pick a move</h2>
