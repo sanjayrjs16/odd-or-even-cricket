@@ -4,64 +4,80 @@ import InfoComponent from '../components/InfoComponent'
 import GameScreenComponent from '../components/GameScreenComponent'
 import { setBatFirst, setPlayerMove, setComputerMove, decrementBalls, updateWickets, updateRuns, updateTarget, resetBalls, setfirstInningsDone, declareWinner, setEndGame } from '../redux/actions/gameActionCreator';
 import PlayerMovesComponent from '../components/PlayerMovesComponent';
+import {Link} from 'react-router-dom';
 
 
 function MatchContainer(props) {
 
     const checkWinner = useCallback(() => {
-        if (props.batFirst === "You") {
-            if (props.balls === 0 || props.computerStats.wickets === 0) {
-                if ((props.target) < props.computerStats.runScored) {
-                    console.log("Computer WON!!")
-                    props.declareWinner("Computer")
-                    props.setEndGame()
-                }
-                else if (props.target === props.computerStats.runScored) {
-                    props.declareWinner("Draw")
-                    props.setEndGame()
-                }
-                else {
-                    props.declareWinner("You")
-                    props.setEndGame()
-                }
-            }
-            else {
-                if ((props.target) < props.computerStats.runScored) {
-                    console.log("Computer WON!!")
-                    props.declareWinner("Computer")
-                    props.setEndGame()
-                }
-                
-                
-            }
+        console.log("Checking Winner....")
+        if(!(props.firstInningsDone)){
+            return false
         }
-        else {
-            if (props.balls === 0 || props.playerStats.wickets === 0) {
-                if (props.target < props.playerStats.runScored) {
-                    console.log("You WON!!")
-                    props.declareWinner("You")
-                    props.setEndGame()
-                }
-                else if (props.target === props.playerStats.runScored) {
-                    console.log("It's a draw!!")
-                    props.declareWinner("Draw")
-                    props.setEndGame()
+        else{
+            if (props.batFirst === "You") {
+                if (props.balls === 0 || props.computerStats.wickets === 0) {
+                    if ((props.target) < props.computerStats.runScored) {
+                        console.log("Computer WON!!")
+                        props.declareWinner("Computer")
+                        props.setEndGame()
+                        return true
+                    }
+                    else if (props.target === props.computerStats.runScored) {
+                        props.declareWinner("Draw")
+                        props.setEndGame()
+                        return true
+                    }
+                    else {
+                        props.declareWinner("You")
+                        props.setEndGame()
+                        return true
+                    }
                 }
                 else {
-                    console.log("Computer WON!!")
-                    props.declareWinner("Computer")
-                    props.setEndGame()
+                    if ((props.target) < props.computerStats.runScored) {
+                        console.log("Computer WON!!")
+                        props.declareWinner("Computer")
+                        props.setEndGame()
+                        return true
+                    }
+                    
+                    
                 }
             }
             else {
-                if (props.target < props.playerStats.runScored) {
-                    console.log("You WON!!")
-                    props.declareWinner("You")
-                    props.setEndGame()
+                if (props.balls === 0 || props.playerStats.wickets === 0) {
+                    if (props.target < props.playerStats.runScored) {
+                        console.log("You WON!!")
+                        props.declareWinner("You")
+                        props.setEndGame()
+                        return true
+                    }
+                    else if (props.target === props.playerStats.runScored) {
+                        console.log("It's a draw!!")
+                        props.declareWinner("Draw")
+                        props.setEndGame()
+                        return true
+                    }
+                    else {
+                        console.log("Computer WON!!")
+                        props.declareWinner("Computer")
+                        props.setEndGame()
+                        return true
+                    }   
                 }
-               
-               
+                else {
+                    if (props.target < props.playerStats.runScored) {
+                        console.log("You WON!!")
+                        props.declareWinner("You")
+                        props.setEndGame()
+                        return true
+                    }
+                   
+                   
+                }
             }
+            
         }
     })
     const checkFirstInningsDone = useCallback(() => {  // Used to see if first batting is done
@@ -91,7 +107,7 @@ function MatchContainer(props) {
         }
     });
     const checkBallOutcome = useCallback((who) => {   // Used to determine the outcome of each ball
-
+        console.log("Checnking ball outcome....")
         if (who === "You") {  //if first batting is player
             if (props.playerGameMove.number === props.computerGameMove.number) {  //if wicket, updates wicket and returns "wicket"
                 console.log("WICKET!!")
@@ -142,28 +158,31 @@ function MatchContainer(props) {
                 checkFirstInningsDone()
             }
             else {
-          
+               
                 if (props.batFirst === "You") {
                     checkBallOutcome("Computer")
+                    
                     console.log("Computer score ( ", props.computerStats.runScored, " - ", 3 - props.computerStats.wickets, " ) - Target is :", props.target)
                 }
                 else {
                     checkBallOutcome("You")
+                    
                     console.log("Your score ( ", props.playerStats.runScored, " - ", 3 - props.playerStats.wickets, " ) - Target is :", props.target)
                 }
-                checkWinner()
+                
             }
         }
         else {
             console.log("Game hasn't begun yet!!, select a move")
         }
 
-    }, [props.playerGameMove, props.computerGameMove]);
-    if(!(props.gameEnd)){
+    }, [props.playerGameMove, props.computerGameMove, props.winner]);
+
+    if(!(checkWinner())){
         if (props.firstInningsDone){ 
             return (
                 <>
-                <InfoComponent info={`Target  ${props.target}`} />
+                <InfoComponent info={`The target is ${props.target + 1}`} />
                 <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone} who={props.batFirst==="You"?"Computer":"You"} runs={props.batFirst==="You"?props.computerStats.runScored:props.playerStats.runScored} wickets={props.batFirst==="You"?props.computerStats.wickets:props.playerStats.wickets} target={props.target} balls={props.balls}/>
                 <PlayerMovesComponent setPlayerMove={props.setPlayerMove} setComputerMove={props.setComputerMove} countBalls={true} decrementBalls={props.decrementBalls} startGame={true} />
     
@@ -183,8 +202,8 @@ function MatchContainer(props) {
             return (
                 <>
                     <InfoComponent info={"It's a draw !!"} />
-                    <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
-
+                    <GameScreenComponent gameEnd={true} playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
+                    <button className="game-button" onClick={window.location.reload}><Link to="/">Rematch</Link></button>
                 </>
             )
         }
@@ -192,8 +211,8 @@ function MatchContainer(props) {
             return (
                 <>
                     <InfoComponent info={`${props.winner} won the match !!`} />
-                    <GameScreenComponent playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
-
+                    <GameScreenComponent gameEnd={true} playerMove={props.playerGameMove} computerMove={props.computerGameMove} startGame={true} firstInningsDone={props.firstInningsDone}  who={props.batFirst} runs={props.batFirst==="You"?props.playerStats.runScored:props.computerStats.runScored} wickets={props.batFirst==="You"?props.playerStats.wickets:props.computerStats.wickets}  balls={props.balls}/>
+                    <Link to="/"><button className="game-button" onClick={window.location.reload} >Rematch</button></Link>
             </>
             )
         }
