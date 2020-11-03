@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(112, 112, 112);
+  background-color: rgb(89, 165, 82);
 }
 
 .App{
@@ -8,7 +8,7 @@ body{
 }
 .game-button{
   padding: 0.9em;
-  background-color: brown;
+  background-color: rgb(187, 62, 62);
   border-radius: 0.8em;
   font-size: large;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -65,7 +65,7 @@ span:hover{
 
 .game-area{
   border: 0.25em rgb(199, 180, 218) solid;
-  background-color: rgb(118, 34, 121);
+  background-color: rgb(202, 167, 114);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
