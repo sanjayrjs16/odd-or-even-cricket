@@ -10,8 +10,9 @@ import { Link } from 'react-router-dom';
 function MatchContainer(props) {
 
     const checkWinner = useCallback(() => {
-        console.log("Checking Winner....")
+        console.log("checkWinner(): Checking Winner....", "YOur Wickets remaining: ",props.playerStats.wickets," Computer wickets remaining: ", props.computerStats.wickets)
         if (!(props.firstInningsDone)) {
+            console.log("checkWinner(): Winner undecided, first innings in progress, batting:",props.batFirst," Computer wickets remaining: ", props.computerStats.wickets, " Player wickets remaining: ", props.playerStats.wickets)
             return false
         }
         else {
@@ -81,16 +82,16 @@ function MatchContainer(props) {
         }
     })
     const checkFirstInningsDone = useCallback(() => {  // Used to see if first batting is done
-        console.log("Checking for completion of first innings (Inside checkFirstInningsDone)")
+        console.log("checkFirstInningsDone(): Checking for completion of first innings.....")
         if (props.balls === 0) {
-            console.log("First innings is complete (Inside checkFirstInningsDone)")
+            console.log("checkFirstInningsDone() : First innings is complete (Balls finished)")
             props.resetBalls()
             props.setfirstInningsDone()          //remember to reset balls for next innings
         }
         else {
             if (props.batFirst === 'You') {
                 if (props.playerStats.wickets === 0) {
-                    console.log("First innings is complete (Inside checkFirstInningsDone)")
+                    console.log("checkFirstInningsDone(): First innings is complete (Player wickets are 0)")
                     props.resetBalls()
                     props.setfirstInningsDone()
                 }
@@ -98,7 +99,7 @@ function MatchContainer(props) {
             }
             else {
                 if (props.computerStats.wickets === 0) {
-                    console.log("First innings is complete (Inside checkFirstInningsDone)")
+                    console.log("checkFirstInningsDone(): First innings is complete (Computer wickets are 0)")
                     props.resetBalls()
                     props.setfirstInningsDone()
                 }
@@ -144,14 +145,14 @@ function MatchContainer(props) {
                 if (props.batFirst === "You") {
                     if (checkBallOutcome("You") === "Runs") {
                         props.updateTarget(props.playerGameMove.number)
-                        console.log("Your score ( ", props.playerStats.runScored, " - ", 3 - props.playerStats.wickets, " ) - Target is :", props.target)
+                        console.log("Your score ( ", props.playerStats.runScored, " - ", 1 - props.playerStats.wickets, " ) - Target is :", props.target)
                     }
                 }
                 else {
 
                     if (checkBallOutcome("Computer") === "Runs") {
                         props.updateTarget(props.computerGameMove.number)
-                        console.log("Computer score ( ", props.computerStats.runScored, " - ", 3 - props.computerStats.wickets, " ) - Target is :", props.target)
+                        console.log("Computer score ( ", props.computerStats.runScored, " - ", 1 - props.computerStats.wickets, " ) - Target is :", props.target)
                     }
 
                 }
@@ -162,12 +163,12 @@ function MatchContainer(props) {
                 if (props.batFirst === "You") {
                     checkBallOutcome("Computer")
 
-                    console.log("Computer score ( ", props.computerStats.runScored, " - ", 3 - props.computerStats.wickets, " ) - Target is :", props.target)
+                    console.log("Computer score ( ", props.computerStats.runScored, " - ", 1 - props.computerStats.wickets, " ) - Target is :", props.target)
                 }
                 else {
                     checkBallOutcome("You")
 
-                    console.log("Your score ( ", props.playerStats.runScored, " - ", 3 - props.playerStats.wickets, " ) - Target is :", props.target)
+                    console.log("Your score ( ", props.playerStats.runScored, " - ", 1 - props.playerStats.wickets, " ) - Target is :", props.target)
                 }
 
             }
@@ -176,7 +177,7 @@ function MatchContainer(props) {
             console.log("Game hasn't begun yet!!, select a move")
         }
 
-    }, [props.playerGameMove, props.computerGameMove, props.winner]);
+    }, [props.playerGameMove, props.computerGameMove, props.winner, props.firstInningsDone]);
 
     if (!(checkWinner())) {
         if (props.firstInningsDone) {

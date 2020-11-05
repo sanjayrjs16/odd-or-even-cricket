@@ -5,9 +5,9 @@ const initialState = {
     target: 0,
     setFirstInningsDone: false,
     playerStats: {runScored: 0,
-             wickets: 3  },
+             wickets: 1  },
     computerStats: {runScored: 0,
-        wickets: 3  },
+        wickets: 1  },
         gameEnd: false
             
 }

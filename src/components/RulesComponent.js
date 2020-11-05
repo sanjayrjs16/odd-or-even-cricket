@@ -22,9 +22,9 @@ export default function RulesComponent() {
                         <span role="img" aria-label="five-fingers">🖐</span> - Five
                         <span role="img" aria-label="six">6️⃣</span> - Six
                 </div>
-                <p>The sum of the two numbers is taken, and checked if odd or even and toss winner is one who made the right call, can choose to bowl or bat first. </p>
+                <p>The sum of the two numbers is taken, and checked if odd or even and toss winner is one who made the right call, can choose to ball or bat first. </p>
                 <h4>2. The Game</h4>
-                <p>There is one-over(6 Balls) and each player has 3 wickets. Game begins with player choosing, one of the moves(Computer will choose too). The Aim of the bowling side, is to guess the move of the opponent and drop the same, earning him a wicket.And the batting side, must do the opposite, prevent opponents from guessing your move, and score more runs. The first innings is done, when either, an ove(6 balls) is done or when 3 wickets of batting side is lost, and a target is set for for opponent. The winner, is one who can score more runs.</p>
+                <p>There is one-over(6 Balls) and each player has 3 wickets. Both sides has to bat and bowl. Game invloves player choosing, one of the moves(Computer will choose too). The Aim of the bowling side, is to guess the move of the opponent and drop the same, earning him a wicket.And the batting side, must do the opposite, prevent opponents from guessing your move, and score more runs. The first innings is done, when either, an over(6 balls) is done or when 3 wickets of batting side is lost, and a target is set for for opponent. The winner, is one who can score more runs.</p>
                 </div>
         </div>
     )

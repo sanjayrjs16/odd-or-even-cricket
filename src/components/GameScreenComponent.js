@@ -14,7 +14,7 @@ export default function GameScreenComponent(props) {
                
               <span className="player-icon" role="img" aria-label="Player">👤</span>
               {props.playerMove === undefined?<span className="player-fist" role="img" aria-label="Player">🤜</span>:<span className="player-fist" role="img" aria-label="Player">{props.playerMove.hand }</span>}
-              <ScoreBoardComponent firstInningsDone={props.firstInningsDone} who={props.who} runs={props.runs} wickets={3 - props.wickets} target={props.target} balls={props.balls}/>
+              <ScoreBoardComponent firstInningsDone={props.firstInningsDone} who={props.who} runs={props.runs} wickets={1 - props.wickets} target={props.target} balls={props.balls}/>
              {props.computerMove === undefined?<span className="player-fist" role="img" aria-label="Player">🤛</span>:<span className="player-fist" role="img" aria-label="Player">{props.computerMove.hand}</span>}
              
                <span  className="player-icon" role="img" aria-label="Robot">🤖</span>
